@@ -1,215 +1,80 @@
-
-
 <!DOCTYPE html>
 <html lang="ar">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>أڴم - Agem | منصة التوثيق الذكية</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;700&family=Noto+Sans+Tifinagh&display=swap" rel="stylesheet">
-
-<style>
-:root { --am-blue: #008eb0; --am-green: #bed62f; --am-yellow: #fbd305; }
-body { margin:0; background:black; overflow:hidden; font-family: 'Noto Sans Arabic', 'Noto Sans Tifinagh', sans-serif; direction: rtl; }
-.slide { position:absolute; width:100%; height:100%; opacity:0; transform:scale(1.1); transition: opacity 0.8s ease, transform 0.8s ease; display:flex; align-items:center; justify-content:center; pointer-events: none; }
-.slide.active { opacity:1; transform:scale(1); }
-.text { color:white; font-size:40px; text-align:center; max-width:85%; line-height:1.6; text-shadow: 0 5px 20px rgba(0,0,0,0.8); }
-.slide img, .slide video { width:100%; height:100%; object-fit:cover; }
-.overlay-text { position: absolute; z-index: 2; bottom: 15%; text-align: center; color: white; font-size: 30px; text-shadow: 0 4px 15px rgba(0,0,0,0.9); max-width: 90%; font-weight: bold; }
-.progress-container { position:fixed; top:0; left:0; width: 100%; padding: 15px 10px 0 10px; box-sizing: border-box; display: flex; gap: 5px; z-index: 30; }
-.segment { flex: 1; height: 4px; background: rgba(255, 255, 255, 0.3); border-radius: 2px; overflow: hidden; cursor: pointer; }
-.fill { height: 100%; background: linear-gradient(90deg, var(--am-blue), var(--am-green), var(--am-yellow)); width: 0%; transform-origin: left; }
-.header-container { position:fixed; top: 30px; left: 15px; right: 15px; display: flex; justify-content: space-between; align-items: center; z-index: 20; }
-.brand { display: flex; align-items: center; gap: 8px; color: white; font-weight: bold; font-size: 22px; text-shadow: 0 2px 10px rgba(0,0,0,0.8); }
-.brand span { font-size: 28px; color: var(--am-blue); }
-.controls { display: flex; gap: 10px; }
-.control-btn { color:white; font-size:16px; cursor:pointer; background: rgba(0,0,0,0.4); border-radius: 50%; width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(5px); }
-.footer-container { position: fixed; bottom: 50px; left: 0; width: 100%; z-index: 20; display: flex; flex-direction: column; gap: 15px; }
-.ticker-wrap { position: fixed; bottom: 0; left: 0; width: 100%; background: rgba(0,0,0,0.8); overflow: hidden; white-space: nowrap; padding: 8px 0; display: none; z-index: 40; backdrop-filter: blur(5px); border-top: 1px solid var(--am-blue); }
-.ticker-text { display: inline-block; color: white; font-size: 16px; padding-left: 100%; animation: ticker 15s linear infinite; }
-@keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
-.ticker-ltr { animation: ticker-ltr 15s linear infinite; padding-right: 100%; padding-left: 0; }
-@keyframes ticker-ltr { 0% { transform: translateX(0); } 100% { transform: translateX(100%); } }
-.action-row { display: flex; justify-content: space-between; align-items: flex-end; padding: 0 20px; }
-.share-btn { color:white; font-size:20px; cursor:pointer; background: rgba(255,255,255,0.2); border-radius: 50%; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(5px); }
-.swipe-up { text-align: center; color: white; cursor: pointer; display: none; flex-direction: column; align-items: center; animation: bounce 2s infinite; text-shadow: 0 2px 10px rgba(0,0,0,0.8); flex-grow: 1; }
-.swipe-up i { font-size: 24px; font-style: normal; margin-bottom: 5px; color: var(--am-yellow); }
-@keyframes bounce { 0%, 20%, 50%, 80%, 100% { transform: translateY(0); } 40% { transform: translateY(-10px); } 60% { transform: translateY(-5px); } }
-.loader { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); border: 3px solid rgba(255,255,255,0.3); border-top: 3px solid var(--am-yellow); border-radius: 50%; width: 30px; height: 30px; animation: spin 1s linear infinite; display: none; z-index: 15; }
-@keyframes spin { 0% { transform: translate(-50%, -50%) rotate(0deg); } 100% { transform: translate(-50%, -50%) rotate(360deg); } }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أڴم - Agem | منصة التوثيق التفاعلية</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;700&family=Noto+Sans+Tifinagh&display=swap" rel="stylesheet">
+    <style>
+        :root { --am-blue: #008eb0; --am-green: #bed62f; --am-yellow: #fbd305; }
+        body { margin:0; background:black; overflow:hidden; font-family: 'Noto Sans Arabic', 'Noto Sans Tifinagh', sans-serif; direction: rtl; }
+        .slide { position:absolute; width:100%; height:100%; opacity:0; transition: opacity 0.8s ease; display:flex; align-items:center; justify-content:center; }
+        .slide.active { opacity:1; }
+        .slide img, .slide video { width:100%; height:100%; object-fit:cover; }
+        .overlay-text { position: absolute; z-index: 2; bottom: 15%; text-align: center; color: white; font-size: 28px; text-shadow: 0 4px 15px rgba(0,0,0,0.9); max-width: 90%; font-weight: bold; }
+        .decision-overlay { position: absolute; z-index: 100; display: flex; flex-direction: column; gap: 15px; width: 80%; max-width: 350px; }
+        .decision-btn { background: rgba(0, 142, 176, 0.85); color: white; padding: 18px; border-radius: 15px; border: 2px solid white; cursor: pointer; text-align: center; backdrop-filter: blur(8px); font-weight: bold; transition: 0.3s; animation: fadeInUp 0.8s ease; }
+        .decision-btn:hover { background: var(--am-green); transform: scale(1.05); }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .brand { position: fixed; top: 20px; right: 20px; z-index: 50; color: white; font-weight: bold; font-size: 22px; text-shadow: 0 2px 10px rgba(0,0,0,0.8); }
+        .brand span { color: var(--am-blue); font-size: 26px; }
+    </style>
 </head>
 <body>
 
-<div id="slides"></div>
-<div class="loader" id="loader"></div>
-<div class="progress-container" id="progressContainer"></div>
+    <div class="brand"><span>ⵣ</span> أڴم | Agem</div>
+    <div id="slides"></div>
 
-<div class="header-container">
-  <div class="brand"><span>ⵣ</span> أڴم | Agem</div>
-  <div class="controls">
-    <div class="control-btn" id="playBtn" onclick="togglePlay(event)">⏸</div>
-    <div class="control-btn" id="soundBtn" onclick="toggleSound(event)">🔇</div>
-  </div>
-</div>
+    <script>
+        let slidesData = [];
 
-<div class="footer-container">
-  <div class="action-row">
-    <div style="width:45px"></div> 
-    <div class="swipe-up" id="swipeUpBtn" onclick="openLink(event)"><i>⌃</i><span id="swipeUpText">اسحب للأعلى</span></div>
-    <div class="share-btn" onclick="shareStory(event)">🔗</div>
-  </div>
-</div>
+        async function loadContent() {
+            try {
+                const response = await fetch('data.json');
+                slidesData = await response.json();
+                renderSlide("start"); // نبدأ بالمشهد الذي يحمل ID باسم start
+            } catch (e) {
+                document.getElementById('slides').innerHTML = '<div style="color:white;text-align:center;padding:50px;">جاري تحميل المحتوى... تأكد من وجود ملف data.json</div>';
+            }
+        }
 
-<div class="ticker-wrap" id="tickerWrap"><div class="ticker-text" id="tickerText"></div></div>
+        function renderSlide(id) {
+            const data = slidesData.find(s => s.id === id) || slidesData[0];
+            const container = document.getElementById("slides");
+            container.innerHTML = '';
 
-<script>
-const container = document.getElementById("slides");
-const progressContainer = document.getElementById("progressContainer");
-const loader = document.getElementById("loader");
-const playBtn = document.getElementById("playBtn");
-const soundBtn = document.getElementById("soundBtn");
-const tickerWrap = document.getElementById("tickerWrap");
-const tickerText = document.getElementById("tickerText");
-const swipeUpBtn = document.getElementById("swipeUpBtn");
-const swipeUpText = document.getElementById("swipeUpText");
+            const slideDiv = document.createElement('div');
+            slideDiv.className = 'slide active';
 
-let slidesData = []; let slides = []; let fills = [];
-let index = 0; let playing = true; let isMuted = true;
-let duration = 5000; let timer; let isVideoMode = false;
+            if (data.type === 'video') {
+                slideDiv.innerHTML = `<video src="${data.src}" autoplay muted playsinline loop></video>`;
+            } else {
+                slideDiv.innerHTML = `<img src="${data.src}">`;
+            }
 
-/* ===== الربط بجدول جوجل ===== */
-const SPREADSHEET_ID = '1iyP9ksQYTyfBeTFGO9cAegIDinbJWm6jtpM3NKoejc4';
-const SHEET_URL = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?tqx=out:json`;
+            if (data.content) {
+                const txt = document.createElement('div');
+                txt.className = 'overlay-text';
+                txt.innerText = data.content;
+                slideDiv.appendChild(txt);
+            }
 
-async function fetchStoryData() {
-  loader.style.display = "block";
-  try {
-    const response = await fetch(SHEET_URL);
-    const text = await response.text();
-    const jsonData = JSON.parse(text.substr(47).slice(0, -2));
-    
-    // فلتر مضاد للأخطاء: يأخذ فقط الصفوف التي نوعها text أو image أو video ويتجاهل العناوين
-    let validRows = jsonData.table.rows.filter(row => {
-      if (!row || !row.c || !row.c[0]) return false;
-      const typeVal = String(row.c[0].v).toLowerCase().trim();
-      return ['text', 'image', 'video'].includes(typeVal);
-    });
+            if (data.options) {
+                const overlay = document.createElement('div');
+                overlay.className = 'decision-overlay';
+                data.options.forEach(opt => {
+                    const btn = document.createElement('div');
+                    btn.className = 'decision-btn';
+                    btn.innerText = opt.text;
+                    btn.onclick = () => renderSlide(opt.targetId);
+                    overlay.appendChild(btn);
+                });
+                slideDiv.appendChild(overlay);
+            }
+            container.appendChild(slideDiv);
+        }
 
-    slidesData = validRows.map(row => {
-      const c = row.c;
-      return {
-        type: String(c[0]?.v).toLowerCase().trim(),
-        src: c[1]?.v || '',
-        content: c[2]?.v || '',
-        bg: c[3]?.v || '#000',
-        ticker: c[4]?.v || '',
-        tickerDir: c[5]?.v || 'rtl',
-        link: c[6]?.v || '',
-        linkText: c[7]?.v || 'اقرأ المزيد'
-      };
-    });
-    
-    if(slidesData.length === 0) throw new Error("لا توجد بيانات صحيحة");
-    buildStory();
-  } catch (error) {
-    loader.style.display = "none";
-    container.innerHTML = `<div style="color:white;text-align:center;padding:20px;">⚠️ خطأ في قراءة البيانات</div>`;
-  }
-}
-
-function buildStory() {
-  container.innerHTML = ''; progressContainer.innerHTML = '';
-  slidesData.forEach((slide, i) => {
-    const div = document.createElement("div");
-    div.className = "slide";
-    
-    if (slide.type === "text") {
-      div.style.background = slide.bg;
-      div.innerHTML = `<div class="text">${slide.content}</div>`;
-    } else if (slide.type === "image") {
-      div.innerHTML = `<img src="${slide.src}" loading="lazy" onerror="this.style.display='none'">`;
-      if (slide.content) div.innerHTML += `<div class="overlay-text">${slide.content}</div>`;
-    } else if (slide.type === "video") {
-      div.innerHTML = `<video src="${slide.src}" playsinline muted preload="auto"></video>`;
-      if (slide.content) div.innerHTML += `<div class="overlay-text">${slide.content}</div>`;
-    }
-    
-    container.appendChild(div);
-    const segment = document.createElement("div");
-    segment.className = "segment";
-    segment.innerHTML = `<div class="fill" id="fill-${i}"></div>`;
-    segment.onclick = (e) => { e.stopPropagation(); index = i; resetAndShow(); };
-    progressContainer.appendChild(segment);
-  });
-  slides = document.querySelectorAll(".slide");
-  fills = document.querySelectorAll(".fill");
-  showSlide(index);
-}
-
-function showSlide(i) {
-  if (!slides[i]) return;
-  loader.style.display = "none";
-  document.querySelectorAll('video').forEach(vid => { vid.pause(); vid.currentTime = 0; vid.ontimeupdate = null; });
-  slides.forEach(s => s.classList.remove("active"));
-  const currentSlide = slides[i];
-  currentSlide.classList.add("active");
-  fills.forEach((fill, idx) => { fill.style.transition = "none"; fill.style.width = idx < i ? "100%" : "0%"; });
-  const currentFill = fills[i];
-  const slideData = slidesData[i];
-
-  if (slideData.ticker) {
-    tickerWrap.style.display = "block";
-    tickerText.innerHTML = slideData.ticker;
-    tickerText.className = slideData.tickerDir === "ltr" ? "ticker-text ticker-ltr" : "ticker-text";
-  } else { tickerWrap.style.display = "none"; }
-
-  if (slideData.link) {
-    swipeUpBtn.style.display = "flex";
-    swipeUpText.innerText = slideData.linkText;
-  } else { swipeUpBtn.style.display = "none"; }
-
-  const video = currentSlide.querySelector('video');
-  if (video) {
-    isVideoMode = true; stopTimer();
-    if (playing) {
-      if (video.readyState < 3) loader.style.display = "block";
-      video.onplaying = () => loader.style.display = "none";
-      video.play().catch(e => console.log(e));
-      video.ontimeupdate = () => { currentFill.style.transition = "none"; currentFill.style.width = (video.currentTime / video.duration) * 100 + "%"; };
-      video.onended = () => nextSlide();
-    }
-  } else {
-    isVideoMode = false;
-    void currentFill.offsetWidth;
-    if (playing) { currentFill.style.transition = duration + "ms linear"; currentFill.style.width = "100%"; startTimer(); }
-  }
-}
-
-function resetAndShow() { showSlide(index); }
-function toggleSound(e) { e.stopPropagation(); isMuted = !isMuted; soundBtn.innerText = isMuted ? "🔇" : "🔊"; const v = slides[index].querySelector('video'); if (v) v.muted = isMuted; }
-function startTimer() { stopTimer(); timer = setInterval(nextSlide, duration); }
-function stopTimer() { clearInterval(timer); }
-function nextSlide() { if (index < slides.length - 1) { index++; resetAndShow(); } else { index = 0; resetAndShow(); } }
-function prevSlide() { index = (index - 1 + slides.length) % slides.length; resetAndShow(); }
-function togglePlay(e) { e.stopPropagation(); playing = !playing; const v = slides[index].querySelector('video'); const f = fills[index]; if (playing) { playBtn.innerText = "⏸"; if (isVideoMode && v) v.play(); else { f.style.transition = duration + "ms linear"; f.style.width = "100%"; startTimer(); } } else { playBtn.innerText = "▶"; if (isVideoMode && v) v.pause(); else { stopTimer(); f.style.width = window.getComputedStyle(f).width; f.style.transition = "none"; } } }
-function openLink(e) { if(e) e.stopPropagation(); const link = slidesData[index].link; if (link) window.open(link, '_blank'); }
-function shareStory(e) { e.stopPropagation(); if (navigator.share) { navigator.share({ title: 'أڴم', url: window.location.href }).catch(e=>e); } }
-
-let startX = 0; let startY = 0;
-document.addEventListener("touchstart", e => { startX = e.touches[0].clientX; startY = e.touches[0].clientY; });
-document.addEventListener("touchend", e => {
-  let endX = e.changedTouches[0].clientX; let endY = e.changedTouches[0].clientY;
-  let diffX = startX - endX; let diffY = startY - endY;
-  if (Math.abs(diffX) > Math.abs(diffY)) { if (diffX > 50) nextSlide(); else if (diffX < -50) prevSlide(); } 
-  else { if (diffY > 50 && slidesData[index].link) openLink(); }
-});
-document.addEventListener("click", (e) => { if (e.target.closest('.control-btn') || e.target.closest('.progress-container') || e.target.closest('.share-btn') || e.target.closest('.swipe-up')) return; e.clientX < window.innerWidth / 2 ? prevSlide() : nextSlide(); });
-
-fetchStoryData();
-</script>
+        loadContent();
+    </script>
 </body>
 </html>
